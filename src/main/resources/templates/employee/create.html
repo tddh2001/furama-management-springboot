@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="layout :: navtop2"></nav>
+    <nav th:replace="layout :: navtop"></nav>
+    <div id="page-wrapper" th:fragment="navside-index">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="section-title">Create Employee</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form th:action="@{/create-employee}"
+                                          th:object="${employee}" method="post">
+                                        <div class="container ">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form class="form-light mt-20" role="form">
+                                                        <div class="form-group">
+                                                            <label>Name</label>
+                                                            <input th:field="*{employeeName}" type="text"
+                                                                   class="form-control" placeholder="Your name" required>
+                                                            <label th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}" style="color: red"></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Birth Day</label>
+                                                            <input th:field="*{employeeBirthday}" type="date"
+                                                                   class="form-control" placeholder="Birth Day" required>
+                                                            <label th:if="${#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}" style="color: red"></label>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Email</label>
+                                                                    <input th:field="*{employeeEmail}" type="email"
+                                                                           class="form-control"
+                                                                           placeholder="Email address" required>
+                                                                    <label th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Phone</label>
+                                                                    <input th:field="*{employeePhone}" type="text"
+                                                                           class="form-control"
+                                                                           placeholder="Phone number" required>
+                                                                    <label th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Gender</label>
+                                                                    <select th:field="*{employeeGender}"
+                                                                            class="form-control" required>
+                                                                        <option th:each="p : ${gender}"
+                                                                                th:value="${p.genderId}"
+                                                                                th:text="${p.gender}"></option>
+                                                                    </select>
+                                                                    <label th:if="${#fields.hasErrors('employeeGender')}" th:errors="*{employeeGender}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Education Degree</label>
+                                                                    <select class="form-control"
+                                                                            th:field="*{educationDegree}" required>
+                                                                        <option th:each="p : ${educationDegrees}"
+                                                                                th:value="${p.education_degree_id}"
+                                                                                th:text="${p.education_degree_name}"></option>
+                                                                    </select>
+                                                                    <label th:if="${#fields.hasErrors('educationDegree')}" th:errors="*{educationDegree}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Division</label>
+                                                                    <select th:field="*{division}"
+                                                                            class="form-control" required>
+                                                                        <option th:each="p : ${divisions}"
+                                                                                th:value="${p.division_id}"
+                                                                                th:text="${p.division_name}"></option>
+                                                                    </select>
+                                                                    <label th:if="${#fields.hasErrors('division')}" th:errors="*{division}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Position</label>
+                                                                    <select th:field="*{position}"
+                                                                            class="form-control" required>
+                                                                        <option th:each="p : ${positions}"
+                                                                                th:value="${p.position_id}"
+                                                                                th:text="${p.position_name}"></option>
+                                                                    </select>
+                                                                    <label th:if="${#fields.hasErrors('position')}" th:errors="*{position}" style="color: red"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Salary</label>
+                                                            <input th:field="*{employeeSalary}" type="text"
+                                                                   class="form-control" placeholder="ID Card" required>
+                                                            <label th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}" style="color: red"></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ID Card</label>
+                                                            <input th:field="*{employeeIDCard}" type="text"
+                                                                   class="form-control" placeholder="ID Card" required>
+                                                            <label th:if="${#fields.hasErrors('employeeIDCard')}" th:errors="*{employeeIDCard}" style="color: red"></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Address</label>
+                                                            <input th:field="*{employeeAddress}" type="text"
+                                                                   class="form-control" placeholder="Address" required>
+                                                            <label th:if="${#fields.hasErrors('employeeAddress')}" th:errors="*{employeeAddress}" style="color: red"></label>
+                                                        </div>
+                                                        <!-- <div class="form-group">
+                                                        <label>Message</label>
+                                                        <textarea class="form-control" id="message" placeholder="Write you message here..."
+                                                            style="height:100px;"></textarea>
+                                                    </div> -->
+                                                        <button type="submit" class="btn btn-success btn-lg">Create</button>
+                                                        <p><br/></p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
