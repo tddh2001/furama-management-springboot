@@ -31,13 +31,13 @@
                                                             <label>Name</label>
                                                             <input th:field="*{employeeName}" type="text"
                                                                    class="form-control" placeholder="Your name" required>
-                                                            <label th:if="${#fields.hasErrors('employee_name')}" th:errors="*{employeeName}" style="color: red"></label>
+                                                            <label th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Birth Day</label>
                                                             <input th:field="*{employeeBirthday}" type="date"
                                                                    class="form-control" placeholder="Birth Day" required>
-                                                            <label th:if="${#fields.hasErrors('employee_birthday')}" th:errors="*{employeeBirthday}" style="color: red"></label>
+                                                            <label th:if="${#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}" style="color: red"></label>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -46,7 +46,7 @@
                                                                     <input th:field="*{employeeEmail}" type="email"
                                                                            class="form-control"
                                                                            placeholder="Email address" required>
-                                                                    <label th:if="${#fields.hasErrors('employee_email')}" th:errors="*{employeeEmail}" style="color: red"></label>
+                                                                    <label th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}" style="color: red"></label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -55,7 +55,7 @@
                                                                     <input th:field="*{employeePhone}" type="text"
                                                                            class="form-control"
                                                                            placeholder="Phone number" required>
-                                                                    <label th:if="${#fields.hasErrors('employee_phone')}" th:errors="*{employeePhone}" style="color: red"></label>
+                                                                    <label th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}" style="color: red"></label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -69,7 +69,7 @@
                                                                                 th:value="${p.genderId}"
                                                                                 th:text="${p.gender}"></option>
                                                                     </select>
-                                                                    <label th:if="${#fields.hasErrors('employee_gender')}" th:errors="*{employeeGender}" style="color: red"></label>
+                                                                    <label th:if="${#fields.hasErrors('employeeGender')}" th:errors="*{employeeGender}" style="color: red"></label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -115,19 +115,19 @@
                                                             <label>Salary</label>
                                                             <input th:field="*{employeeSalary}" type="text"
                                                                    class="form-control" placeholder="ID Card" required>
-                                                            <label th:if="${#fields.hasErrors('employee_salary')}" th:errors="*{employeeSalary}" style="color: red"></label>
+                                                            <label th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>ID Card</label>
                                                             <input th:field="*{employeeIDCard}" type="text"
                                                                    class="form-control" placeholder="ID Card" required>
-                                                            <label th:if="${#fields.hasErrors('employee_id_card')}" th:errors="*{employeeIDCard}" style="color: red"></label>
+                                                            <label th:if="${#fields.hasErrors('employeeIDCard')}" th:errors="*{employeeIDCard}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Address</label>
                                                             <input th:field="*{employeeAddress}" type="text"
                                                                    class="form-control" placeholder="Address" required>
-                                                            <label th:if="${#fields.hasErrors('employee_address')}" th:errors="*{employeeAddress}" style="color: red"></label>
+                                                            <label th:if="${#fields.hasErrors('employeeAddress')}" th:errors="*{employeeAddress}" style="color: red"></label>
                                                         </div>
                                                         <!-- <div class="form-group">
                                                         <label>Message</label>

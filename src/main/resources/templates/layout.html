@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,12 +83,12 @@
                     <li>
                         <a th:href="@{/employee-list    }">Employees</a>
                     </li>
-<!--                    <li>-->
-<!--                        <a th:href="@{/#}">Services</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a th:href="@{/#}">Contract</a>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <a th:href="@{/#}">Services</a>-->
+                    <!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <a th:href="@{/#}">Contract</a>-->
+                    <!--                    </li>-->
                 </ul>
             </li>
         </ul>
@@ -114,13 +114,21 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
+                <div sec:authorize="isAnonymous()">
+                    <li>
+                        <a th:href="@{/login}"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                    </li>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <li>
+                        Hello
+                        <span sec:authentication="principal.username"></span>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </div>
+
             </ul>
             <!-- /.dropdown-user -->
         </li>
@@ -134,13 +142,9 @@
                 <h1 class="page-header">
                     Dashboard <small>Furama Resort Management</small>
                 </h1>
-                <div class="panel-body">
-                    <img src="https://i.pinimg.com/564x/59/b6/3b/59b63bf4b2cf3b813b2095392b407848.jpg" class="rounded float-left" alt="...">
-                    <img src="https://i.pinimg.com/564x/1c/a7/85/1ca7855567b0fb6a9494e297f46a0416.jpg" class="rounded float-right" alt="...">
-                </div>
-
             </div>
         </div>
+
     </div>
 
 </div>

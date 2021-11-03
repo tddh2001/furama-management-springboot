@@ -44,6 +44,11 @@ public class CustomerController {
         return "index";
     }
 
+    @GetMapping("/404")
+    private String error403(){
+        return "/customer/inputs-not-acceptable";
+    }
+
     @GetMapping("/customer-list")
     private String list(@RequestParam("s") Optional<String> s, Model model, @PageableDefault(value = 5) Pageable pageable) {
         Page<Customer> customers;

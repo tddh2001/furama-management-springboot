@@ -1,5 +1,7 @@
 package com.codegym.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class Role {
     private String role_name;
 
     @ManyToMany(mappedBy = "roleList")
+    @JsonBackReference
     private Set<User> users;
 
     public Role() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="layout :: head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,23 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="get" th:action="@{/create-employee}">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-plus-square"></i> Create
-                        </button>
-                    </form>
+                    <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <form method="get" th:action="@{/create-employee}">
+                                <button type="submit" class="btn btn-success" disabled>
+                                    <i class="fa fa-plus-square"></i> Create
+                                </button>
+                            </form>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <form method="get" th:action="@{/create-employee}">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus-square"></i> Create
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel-body">
@@ -57,17 +69,40 @@
                                                 <td th:text="${employee.position.position_name}"></td>
                                                 <td th:text="${employee.educationDegree.education_degree_name}"></td>
                                                 <td>
-                                                    <form method="get" th:action="@{/edit-employee/__${employee.employeeId}__ }">
-                                                        <button type="submit" class="btn btn-primary">
-                                                            <i class="fa fa-edit"></i> Edit
-                                                        </button>
-                                                    </form>
+                                                    <div sec:authorize="isAuthenticated()">
+                                                        <div sec:authorize="hasRole('ROLE_USER')">
+                                                            <form method="get" th:action="@{/edit-employee/__${employee.employeeId}__ }">
+                                                                <button type="submit" class="btn btn-primary" disabled>
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                            <form method="get" th:action="@{/edit-employee/__${employee.employeeId}__ }">
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
                                                 </td>
                                                 <td>
-                                                    <button th:onclick="'javascript:employeeSetId(' + ${index.index} + ')'"
-                                                            class="btn btn-danger btnModalDelete"><i
-                                                            class="fa fa-pencil"></i> Delete
-                                                    </button>
+                                                    <div sec:authorize="isAuthenticated()">
+                                                        <div sec:authorize="hasRole('ROLE_USER')">
+                                                            <button th:onclick="'javascript:employeeSetId(' + ${index.index} + ')'"
+                                                                    class="btn btn-danger btnModalDelete" disabled><i
+                                                                    class="fa fa-pencil"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                            <button th:onclick="'javascript:employeeSetId(' + ${index.index} + ')'"
+                                                                    class="btn btn-danger btnModalDelete"><i
+                                                                    class="fa fa-pencil"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-info"
