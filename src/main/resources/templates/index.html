@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="layout :: head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,113 @@
 <div id="wrapper">
     <nav th:replace="layout :: navtop2"></nav>
     <nav th:replace="layout :: navtop"></nav>
-    <div th:replace="layout :: navside-index"></div>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div sec:authorize="isAnonymous()">
+                        <h1 class="page-header">
+                            Dashboard <small>Furama Resort Management</small>
+                        </h1>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <h1 class="page-header">
+                                Dashboard User <small>Furama Resort Management</small>
+                            </h1>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <h1 class="page-header">
+                                Dashboard Admin <small>Furama Resort Management</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-red set-icon">
+                    <i class="fa fa-envelope-o"></i>
+                </span>
+                                <div class="text-box">
+                                    <p class="main-text">120 New</p>
+                                    <p class="text-muted">Messages</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+                                <div class="text-box">
+                                    <p class="main-text">30 Tasks</p>
+                                    <p class="text-muted">Remaining</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-blue set-icon">
+                    <i class="fa fa-bell-o"></i>
+                </span>
+                                <div class="text-box">
+                                    <p class="main-text">240 New</p>
+                                    <p class="text-muted">Notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-brown set-icon">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                                <div class="text-box">
+                                    <p th:text="${mycounter.getCount()} + ' view'" class="main-text"></p>
+                                    <p class="text-muted">Views counter</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Bar Chart Example
+                                </div>
+                                <div class="panel-body">
+                                    <div id="morris-bar-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-green">
+                                <div class="panel-body">
+                                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                                    <h3>120 GB </h3>
+                                </div>
+                                <div class="panel-footer back-footer-green">
+                                    Disk Space Available
+
+                                </div>
+                            </div>
+                            <div class="panel panel-primary text-center no-boder bg-color-red">
+                                <div class="panel-body">
+                                    <i class="fa fa-edit fa-5x"></i>
+                                    <h3>20,000 </h3>
+                                </div>
+                                <div class="panel-footer back-footer-red">
+                                    Articles Pending
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

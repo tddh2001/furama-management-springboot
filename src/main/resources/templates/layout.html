@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <!-- Bootstrap Styles-->
     <link href="/assets/css/bootstrap.css" rel="stylesheet"/>
     <!-- FontAwesome Styles-->
@@ -27,42 +26,6 @@
     <script src="/assets/js/custom-scripts.js"></script>
 </head>
 <body>
-<!--<header th:fragment="header" class="row fa-burger-soda">-->
-<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">-->
-<!--        <a class="navbar-brand" th:href="@{/}"><img-->
-<!--                src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" alt="logo"-->
-<!--                style="width:80px;"></a>-->
-<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
-<!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-
-<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--            <ul class="navbar-nav mr-auto">-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/#}">Employee</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/customer-list}">Customer</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/#}">Service</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/#}">Contract</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/log}">Logs</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <form class="form-inline my-2 my-lg-0" action="#" method="post">-->
-<!--                <input name="countrySearch" class="form-control mr-sm-2" type="search" placeholder="Search">-->
-<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</header>-->
-
 
 <nav class="navbar-default navbar-side" role="navigation" th:fragment="navtop">
     <div class="sidebar-collapse">
@@ -75,20 +38,17 @@
                 <a th:href="@{/log}"><i class="fa fa-edit"></i> Logs </a>
             </li>
             <li>
+                <a th:href="@{/chat-box}"><i class="fa fa-comment"></i> Chat Box</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a th:href="@{/customer-list}">Customers</a>
                     </li>
                     <li>
-                        <a th:href="@{/employee-list    }">Employees</a>
+                        <a th:href="@{/employee-list}">Employees</a>
                     </li>
-                    <!--                    <li>-->
-                    <!--                        <a th:href="@{/#}">Services</a>-->
-                    <!--                    </li>-->
-                    <!--                    <li>-->
-                    <!--                        <a th:href="@{/#}">Contract</a>-->
-                    <!--                    </li>-->
                 </ul>
             </li>
         </ul>
@@ -135,18 +95,6 @@
         <!-- /.dropdown -->
     </ul>
 </nav>
-<div id="page-wrapper" th:fragment="navside-index">
-    <div id="page-inner">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="page-header">
-                    Dashboard <small>Furama Resort Management</small>
-                </h1>
-            </div>
-        </div>
 
-    </div>
-
-</div>
 </body>
 </html>

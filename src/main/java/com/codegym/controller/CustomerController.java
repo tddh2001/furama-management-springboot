@@ -39,10 +39,10 @@ public class CustomerController {
         return customerTypeService.findAll();
     }
 
-    @GetMapping("/")
-    private String index() {
-        return "index";
-    }
+//    @GetMapping("/")
+//    private String index() {
+//        return "index";
+//    }
 
     @GetMapping("/404")
     private String error403(){
@@ -85,7 +85,6 @@ public class CustomerController {
         } catch (DuplicateIDException e) {
             return "/customer/inputs-not-acceptable";
         }
-
     }
 
     @GetMapping("/edit-customer/{id}")
@@ -96,14 +95,15 @@ public class CustomerController {
     }
 
     @PostMapping("edit-customer")
-    private String edit(@ModelAttribute("customer") Customer customer, Model model, RedirectAttributes redirectAttributes) throws DuplicateIDException {
-
-        customerService.edit(customer);
-        model.addAttribute("customer", customer);
-        redirectAttributes.addFlashAttribute("editSuccess", "Edit customer successfully");
-        return "redirect:/customer-list";
-
-
+    private String edit(@Validated @ModelAttribute("customer") Customer customer,BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws DuplicateIDException {
+        if (bindingResult.hasErrors()){
+            return "/customer/edit";
+        }else {
+            customerService.edit(customer);
+            model.addAttribute("customer", customer);
+            redirectAttributes.addFlashAttribute("editSuccess", "Edit customer successfully");
+            return "redirect:/customer-list";
+        }
     }
 
     @PostMapping("delete-customer")

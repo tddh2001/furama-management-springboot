@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .formLogin()
-                .defaultSuccessUrl("/customer-list")
+                .defaultSuccessUrl("/")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/customer-list").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
