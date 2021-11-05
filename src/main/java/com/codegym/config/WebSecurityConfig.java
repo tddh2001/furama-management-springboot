@@ -49,10 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest().authenticated();
     }
-//
+
 //    public static void main(String[] args) {
 //        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        String password = bCryptPasswordEncoder.encode("123");
+//        String password = bCryptPasswordEncoder.encode("1");
 //        System.out.println(password);
 //    }
 }

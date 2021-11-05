@@ -21,6 +21,7 @@
                             <th>Time</th>
                             <th>Name object</th>
                             <th>ID object</th>
+                            <th>By account</th>
                             <th></th>
                         </tr>
                         <th:block th:each="log : ${logs}">
@@ -29,6 +30,7 @@
                                 <td th:text="${log.date}"></td>
                                 <td th:text="${log.iDUpDate}"></td>
                                 <td th:text="${log.nameUpdate}"></td>
+                                <td th:text="${log.byAccount}"></td>
                                 <td>
                                     <div sec:authorize="isAuthenticated()">
                                         <div sec:authorize="hasRole('ROLE_USER')">

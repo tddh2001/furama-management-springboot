@@ -34,17 +34,12 @@
                         <div class="col-md-12">
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table border="1" class="table table-striped table-bordered table-hover">
+                                    <table class="table table-striped table-hover">
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Date Of Birth</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col">ID Card</th>
-                                            <th scope="col">Salary</th>
                                             <th scope="col">Division</th>
                                             <th scope="col">Position</th>
                                             <th scope="col">Education Degree</th>
@@ -60,11 +55,6 @@
                                                     th:text="${employee.employeeName}"></td>
                                                 <td th:text="${employee.employeeGender.gender}"></td>
                                                 <td th:text="${employee.employeeBirthday}"></td>
-                                                <td th:text="${employee.employeePhone}"></td>
-                                                <td th:text="${employee.employeeEmail}"></td>
-                                                <td th:text="${employee.employeeAddress}"></td>
-                                                <td th:text="${employee.employeeIDCard}"></td>
-                                                <td th:text="${employee.employeeSalary}"></td>
                                                 <td th:text="${employee.division.division_name}"></td>
                                                 <td th:text="${employee.position.position_name}"></td>
                                                 <td th:text="${employee.educationDegree.education_degree_name}"></td>

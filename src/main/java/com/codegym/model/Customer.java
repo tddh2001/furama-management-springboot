@@ -13,25 +13,25 @@ import java.util.Set;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @Pattern(regexp = "^(KH-)[\\d]{4}$", message = "The customer ID has the format KH-XXXX (X : 0-9")
-    @NotBlank(message = "Not Blank!")
+    @Pattern(regexp = "^(KH-)[\\d]{4}$", message = "The customer ID has the format KH-XXXX (X : 0-9)")
+    @NotBlank(message = "ID cannot be empty!!")
     @Column(length = 50)
     private String customerId;
-    @NotBlank(message = "Not Blank!")
+    @NotBlank(message = "Name cannot be empty!!")
     private String customerName;
-    @Past(message = "Invalid")
+    @Past(message = "Invalid date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date customerBirthday;
-    @Pattern(regexp = "^([\\d]{9}|[\\d]{12})$", message = "Invalid")
-    @NotBlank(message = "Not blank!")
+    @Pattern(regexp = "^([\\d]{9}|[\\d]{12})$", message = "IDcard invalid")
+    @NotBlank(message = "ID card cannot be empty!!")
     private String customerIDCard;
     @Pattern(regexp = "^((\\(84\\)\\+)|(0))((91)|(90)|(84)|(85)|(93)|(94)|(96)|(38))[\\d]{7}$", message = "Invalid phone number")
-    @NotBlank(message = "Not blank!")
+    @NotBlank(message = "Phone number cannot be empty!")
     private String customerPhone;
     @Pattern(regexp = "^(.+)@(.+)$", message = "Invalid email")
-    @NotBlank(message = "Not blank!")
+    @NotBlank(message = "Email cannot be empty!!")
     private String customerEmail;
-    @NotBlank(message = "Not blank!")
+    @NotBlank(message = "Address cannot be empty!!")
     private String customerAddress;
     @ManyToOne
     @JoinColumn(name = "customer_type_id")

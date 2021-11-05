@@ -28,19 +28,19 @@
                                                         <div class="form-group">
                                                             <label>ID</label>
                                                             <input th:field="*{customerId}" type="text"
-                                                                   class="form-control" placeholder="ID" required>
+                                                                   class="form-control" placeholder="ID" >
                                                             <label th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Name</label>
                                                             <input th:field="*{customerName}" type="text"
-                                                                   class="form-control" placeholder="Your name" required>
+                                                                   class="form-control" placeholder="Your name" >
                                                             <label th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Birth Day</label>
                                                             <input th:field="*{customerBirthday}" type="date"
-                                                                   class="form-control" placeholder="Birth Day" required>
+                                                                   class="form-control" placeholder="Birth Day" >
                                                             <label th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}" style="color: red"></label>
                                                         </div>
                                                         <div class="row">
@@ -49,7 +49,7 @@
                                                                     <label>Email</label>
                                                                     <input th:field="*{customerEmail}" type="email"
                                                                            class="form-control"
-                                                                           placeholder="Email address" required>
+                                                                           placeholder="Email address" >
                                                                     <label th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}" style="color: red"></label>
                                                                 </div>
                                                             </div>
@@ -58,7 +58,7 @@
                                                                     <label>Phone</label>
                                                                     <input th:field="*{customerPhone}" type="text"
                                                                            class="form-control"
-                                                                           placeholder="Phone number" required>
+                                                                           placeholder="Phone number" >
                                                                     <label th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}" style="color: red"></label>
                                                                 </div>
                                                             </div>
@@ -68,7 +68,7 @@
                                                                 <div class="form-group">
                                                                     <label>Gender</label>
                                                                     <select th:field="*{customerGender}"
-                                                                            class="form-control" required>
+                                                                            class="form-control" >
                                                                         <option th:each="p : ${gender}"
                                                                                 th:value="${p.genderId}"
                                                                                 th:text="${p.gender}"></option>
@@ -80,7 +80,7 @@
                                                                 <div class="form-group">
                                                                     <label>Customer type</label>
                                                                     <select class="form-control"
-                                                                            th:field="*{customerType}" required>
+                                                                            th:field="*{customerType}" >
                                                                         <option th:each="p : ${customerType}"
                                                                                 th:value="${p.customer_type_id}"
                                                                                 th:text="${p.customer_type_name}"></option>
@@ -92,13 +92,13 @@
                                                         <div class="form-group">
                                                             <label>ID Card</label>
                                                             <input th:field="*{customerIDCard}" type="text"
-                                                                   class="form-control" placeholder="ID Card" required>
+                                                                   class="form-control" placeholder="ID Card" >
                                                             <label th:if="${#fields.hasErrors('customerIDCard')}" th:errors="*{customerIDCard}" style="color: red"></label>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Address</label>
                                                             <input th:field="*{customerAddress}" type="text"
-                                                                   class="form-control" placeholder="Address" required>
+                                                                   class="form-control" placeholder="Address" >
                                                             <label th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}" style="color: red"></label>
                                                         </div>
                                                         <!-- <div class="form-group">

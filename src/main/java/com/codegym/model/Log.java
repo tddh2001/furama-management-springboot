@@ -13,6 +13,7 @@ public class Log {
     private Date date;
     private String nameUpdate;
     private String iDUpDate;
+    private String byAccount;
 
     public Log() {
     }
@@ -20,6 +21,14 @@ public class Log {
     public Log(String nameMethod, Date date) {
         this.nameMethod = nameMethod;
         this.date = date;
+    }
+
+    public Log(String nameMethod, Date date, String nameUpdate, String iDUpDate, String byAccount) {
+        this.nameMethod = nameMethod;
+        this.date = date;
+        this.nameUpdate = nameUpdate;
+        this.iDUpDate = iDUpDate;
+        this.byAccount = byAccount;
     }
 
     public Log(String nameMethod, Date date, String nameUpdate, String iDUpDate) {
@@ -72,5 +81,13 @@ public class Log {
 
     public void setiDUpDate(String iDUpDate) {
         this.iDUpDate = iDUpDate;
+    }
+
+    public String getByAccount() {
+        return byAccount;
+    }
+
+    public void setByAccount(String byAccount) {
+        this.byAccount = byAccount;
     }
 }

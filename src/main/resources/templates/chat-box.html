@@ -53,21 +53,17 @@
                                     </ul>
                                 </div>
                                 <!--                        chat bar-->
-                                <form th:action="@{/chat}" th:object="${chat}" method="post" th:fragment="chat">
+                                <form id="chatForm" th:action="@{/chat}" th:object="${chat}" method="post" th:fragment="chat">
                                     <div class="panel-footer">
                                         <div class="input-group">
-                                            <div class="form-group col-md-2">
-                                                <input type="text" class="form-control" placeholder="Username"
-                                                       th:field="*{nameUser}" required>
-                                            </div>
                                             <div class="col-md-12">
-                                                <textarea th:field="*{content}" id="btn-input" rows="3"
+                                                <textarea th:field="*{content}" rows="3"
                                                           class="form-group form-control input-sm"
                                                           placeholder="Type your message to send..." required></textarea>
                                             </div>
                                             <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-warning btn-sm"
-                                                        id="btn-chat">Send</button>
+                                                <input type="submit" class="btn btn-warning btn-sm"
+                                                        id="btn-chat">Send</input>
                                             </div>
                                         </div>
                                     </div>
