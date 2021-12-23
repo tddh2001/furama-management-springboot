@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="layout :: head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="layout :: navtop2"></nav>
+    <nav th:replace="layout :: navtop"></nav>
+    <div id="page-wrapper" th:fragment="navside-index">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline d-flex justify-content-center form-control-sm">
+                        <input class="form-control form-control-sm mr-3 w-75" name="s" type="text" placeholder="Search by name" aria-label="Search">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                    <br>
+                    <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <form method="get" th:action="@{/create-customer}">
+                                <button type="submit" class="btn btn-success" disabled>
+                                    <i class="fa fa-plus-square"></i> Create
+                                </button>
+                            </form>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <form method="get" th:action="@{/create-customer}">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus-square"></i> Create
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Customer type</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <th:block th:each="customer, index : ${customers}">
+                                            <tr>
+                                                <td th:id="'customerId' + ${index.index}"
+                                                    th:text="${customer.customerId}"></td>
+                                                <td th:id="'customerName' + ${index.index}"
+                                                    th:text="${customer.customerName}"></td>
+                                                <td th:text="${customer.customerGender.gender}"></td>
+                                                <td th:text="${customer.customerType.customer_type_name}"></td>
+                                                <td>
+                                                    <div sec:authorize="isAuthenticated()">
+                                                        <div sec:authorize="hasRole('ROLE_USER')">
+                                                            <form method="get" th:action="@{/edit-customer/__${customer.customerId}__ }">
+                                                                <button type="submit" class="btn btn-primary" disabled>
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                            <form method="get" th:action="@{/edit-customer/__${customer.customerId}__ }">
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div sec:authorize="isAuthenticated()">
+                                                        <div sec:authorize="hasRole('ROLE_USER')">
+                                                            <button th:onclick="'javascript:customerSetId(' + ${index.index} + ')'"
+                                                                    class="btn btn-danger btnModalDelete" disabled><i
+                                                                    class="fa fa-pencil"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                            <button th:onclick="'javascript:customerSetId(' + ${index.index} + ')'"
+                                                                    class="btn btn-danger btnModalDelete"><i
+                                                                    class="fa fa-pencil"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info"
+                                                            th:onclick="'javascript:showView(' + ${index.index} + ')'">
+                                                        <i class="fa fa-eye"></i> View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                    </table>
+                                    <div>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/customer-list'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link" th:text="${customers.number + 1}"></span><span class="page-link" th:text="${customers.totalPages}"></span></li>
+                                                <li class="page-item"><a th:href="@{'/customer-list'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notify">
+                        <th:block th:if="${createSuccess}">
+                            <p th:text="${createSuccess}"></p>
+                        </th:block>
+                        <th:block th:if="${editSuccess}">
+                            <p th:text="${editSuccess}"></p>
+                        </th:block>
+                        <th:block th:if="${deleteSuccess}">
+                            <p th:text="${deleteSuccess}"></p>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--        modal delete-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="exampleModalLabel2">Delete Customer</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="modelId" size="50" disabled style="border: none;background: white; color: red">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" th:onclick="'javascript:submitDelete()'">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form th:action="@{/delete-customer}" method="post" id="deleteCustomer">
+    <input type="hidden" name="action" value="deleteCustomer">
+    <input type="hidden" name="idCustomer" id="idCustomer">
+</form>
+
+<!--            modal view-->
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title1 text-center" id="exampleModalLabel">View Customer</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    // $('.view').click(function () {
+    //     $.ajax({
+    //         type :"GET",
+    //         url: "/viewCustomer/" + $(this).next().val(),
+    //         dataType:"HTML",
+    //         success : function (data) {
+    //             $('.modal-body1').html(data);
+    //             $('#viewModal').modal('show');
+    //         }
+    //     })
+    // })
+
+    function showView(index) {
+        let id = document.getElementById("customerId" + index).innerHTML;
+        $.ajax({
+            type: "GET",
+            url: "/view-customer/" + id,
+            dataType: "HTML",
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#viewModal').modal('show');
+            }
+        })
+    }
+
+    function customerSetId(index) {
+        let name = document.getElementById("customerName" + index).innerHTML;
+        let id = document.getElementById("customerId" + index).innerHTML;
+        document.getElementById("idCustomer").value = id;
+        document.getElementById("modelId").value = "Do you want delete customer name: " + name;
+        $('#deleteModal').modal('show');
+    }
+
+    function submitDelete() {
+        <!-- để submit form delete  -->
+        document.getElementById("deleteCustomer").submit();
+        alert("Delete customer successfully");
+    }
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="layout :: navtop2"></nav>
+    <nav th:replace="layout :: navtop"></nav>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div sec:authorize="isAnonymous()">
+                        <h1 class="page-header">
+                            Dashboard <small>Furama Resort Management</small>
+                        </h1>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <h1 class="page-header">
+                                Dashboard User <small>Furama Resort Management</small>
+                            </h1>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <h1 class="page-header">
+                                Dashboard Admin <small>Furama Resort Management</small>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!--                    Chat -->
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!--                        chat window-->
+                            <div class="chat-panel panel panel-default chat-boder chat-panel-head">
+                                <div class="panel-heading">
+                                    <i class="fa fa-comments fa-fw"></i>
+                                    Chat Box
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="chat-box">
+                                        <th:block th:each="chat : ${chats}">
+                                            <li class="right clearfix">
+                                                <div class="chat-body clearfix">
+                                                    <strong class="pull-left" th:text="${chat.nameUser}"></strong>
+                                                    <p th:text="${chat.content}"></p>
+                                                </div>
+                                            </li>
+                                        </th:block>
+                                    </ul>
+                                </div>
+                                <!--                        chat bar-->
+                                <form id="chatForm" th:action="@{/chat}" th:object="${chat}" method="post" th:fragment="chat">
+                                    <div class="panel-footer">
+                                        <div class="input-group">
+                                            <div class="col-md-12">
+                                                <textarea th:field="*{content}" rows="3"
+                                                          class="form-group form-control input-sm"
+                                                          placeholder="Type your message to send..." required></textarea>
+                                            </div>
+                                            <div class="input-group-btn">
+                                                <input type="submit" class="btn btn-warning btn-sm"
+                                                        id="btn-chat">Send</input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Are you sure ?</h1>
+<form th:action="@{/delete-log}" th:object="${log}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table border="1" class="table table-hover">
+        <tr>
+            <th>Name method</th>
+            <td th:text="*{nameMethod}"></td>
+        </tr>
+        <tr>
+            <th>Name object</th>
+            <td th:text="*{nameUpdate}"></td>
+        </tr>
+        <tr>
+            <th>ID object</th>
+            <td th:text="*{iDUpDate}"></td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td th:text="*{date}"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>

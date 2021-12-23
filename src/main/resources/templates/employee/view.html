@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="searchTable">
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <td th:text="${employee.employeeId}"></td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td th:text="${employee.employeeName}"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td th:text="${employee.employeeGender.gender}"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td th:text="${employee.employeeAddress}"></td>
+        </tr>
+        <tr>
+            <th>Birth day</th>
+            <td th:text="${employee.employeeBirthday}"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td th:text="${employee.employeeEmail}"></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td th:text="${employee.employeePhone}"></td>
+        </tr>
+        <tr>
+            <th>ID card</th>
+            <td th:text="${employee.employeeIDCard}"></td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+            <td th:text="${employee.employeeSalary}"></td>
+        </tr>
+        <tr>
+            <th>Education Degree</th>
+            <td th:text="${employee.educationDegree.education_degree_name}"></td>
+        </tr>
+        <tr>
+            <th>Position</th>
+            <td th:text="${employee.position.position_name}"></td>
+        </tr>
+        <tr>
+            <th>Division</th>
+            <td th:text="${employee.division.division_name}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="layout :: navtop2"></nav>
+    <nav th:replace="layout :: navtop"></nav>
+    <div id="page-wrapper" th:fragment="navside-index">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel-heading">
+                        <h3 class="section-title">Logs</h3>
+                    </div>
+                    <table border="1" class="table table-hover">
+                        <tr>
+                            <th>Method</th>
+                            <th>Time</th>
+                            <th>Name object</th>
+                            <th>ID object</th>
+                            <th>By account</th>
+                            <th></th>
+                        </tr>
+                        <th:block th:each="log : ${logs}">
+                            <tr>
+                                <td th:text="${log.nameMethod}"></td>
+                                <td th:text="${log.date}"></td>
+                                <td th:text="${log.nameUpdate}"></td>
+                                <td th:text="${log.iDUpDate}"></td>
+                                <td th:text="${log.byAccount}"></td>
+                                <td>
+                                    <div sec:authorize="isAuthenticated()">
+                                        <div sec:authorize="hasRole('ROLE_USER')">
+                                            <a class="btn btn-danger disabled" th:href="@{/delete-log/__${log.id}__}">Delete</a>
+                                        </div>
+                                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                            <a class="btn btn-danger" th:href="@{/delete-log/__${log.id}__}">Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+                        <th:block th:if="${msgLogDelete}">
+                            <p th:text="${msgLogDelete}"></p>
+                        </th:block>
+                    </table>
+                    <div>
+                        <a th:href="@{'/log'(page=${logs.number - 1})}" th:if="${logs.hasPrevious()}">Previous</a>
+                        <span th:text="${logs.number + 1}"></span>/<span th:text="${logs.totalPages}"></span>
+                        <a th:href="@{'/log'(page=${logs.number + 1})}" th:if="${logs.hasNext()}">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
